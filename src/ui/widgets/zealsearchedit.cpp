@@ -80,7 +80,7 @@ bool ZealSearchEdit::eventFilter(QObject *obj, QEvent *ev)
 
         if (keyEvent->key() == Qt::Key_Return) {
             emit treeView->activated(treeView->selectionModel()->currentIndex());
-            return true;
+            return QLineEdit::eventFilter(obj, ev);
         }
 
         // Autocompletes the prefixes.

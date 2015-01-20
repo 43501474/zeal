@@ -214,7 +214,9 @@ MainWindow::MainWindow(Core::Application *app, QWidget *parent) :
     ui->sections_lab->hide();
     ui->sections->setModel(&m_searchState->sectionsList);
     connect(DocsetsRegistry::instance(), &DocsetsRegistry::queryCompleted, this, &MainWindow::onSearchComplete);
-    connect(ui->lineEdit, &QLineEdit::textChanged, [this](const QString &text) {
+
+    connect(ui->lineEdit, &QLineEdit::returnPressed, [&]() {                     
+        auto text = ui->lineEdit->text();
         if (text == m_searchState->searchQuery)
             return;
 
